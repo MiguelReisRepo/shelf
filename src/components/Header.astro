@@ -1,0 +1,19 @@
+---
+import { tenant } from '@/config/site';
+const brand = tenant.brand.name;
+---
+<header class="sticky top-0 z-30 bg-brand-bg/85 backdrop-blur border-b border-brand-border">
+  <div class="mx-auto max-w-6xl px-5 h-16 flex items-center justify-between">
+    <a href="/" class="text-lg font-extrabold tracking-tight">{brand}</a>
+    <nav class="hidden sm:flex items-center gap-7 text-sm font-medium text-brand-muted">
+      <a href="#produtos" class="hover:text-brand-fg transition-colors">Produtos</a>
+      <a href="#como-funciona" class="hover:text-brand-fg transition-colors">Como funciona</a>
+    </nav>
+    <a
+      href="#produtos"
+      class="rounded-full bg-brand-accent text-brand-on-accent text-sm font-semibold px-4 py-2 hover:bg-brand-accent-hover transition-colors"
+    >
+      Ver apps
+    </a>
+  </div>
+</header>

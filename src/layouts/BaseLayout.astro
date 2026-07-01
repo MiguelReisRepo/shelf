@@ -1,0 +1,56 @@
+---
+import '@/styles/global.css';
+import { emitCssVars } from '@mr/tenant-kernel';
+import { tenant, TOKEN_MAP } from '@/config/site';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const site = import.meta.env.PUBLIC_SITE_URL ?? Astro.url.origin;
+
+// Tema do tenant (kernel): traduz tokens canónicos → CSS vars da app.
+const themeVars = emitCssVars(tenant.theme.tokens, TOKEN_MAP);
+
+const orgJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: tenant.brand.name,
+  url: site,
+};
+---
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={site} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={tenant.brand.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="pt_PT" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Tema do tenant (kernel): sobrepõe-se aos defaults do global.css -->
+    <style set:html={`:root{${themeVars}}`}></style>
+
+    <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
+  </head>
+  <body class="bg-brand-bg text-brand-fg flex flex-col min-h-screen">
+    <slot />
+  </body>
+</html>

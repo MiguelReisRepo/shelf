@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  /* Paleta neutra da montra (marketplace). Os valores canónicos são injetados
+     em :root pelo kernel (emitCssVars) e sobrepõem-se a estes defaults. */
+  --color-brand-bg: #FFFFFF;
+  --color-brand-surface: #F6F7F9;
+  --color-brand-fg: #0F172A;
+  --color-brand-muted: #64748B;
+  --color-brand-border: #E2E8F0;
+  --color-brand-accent: #111827;
+  --color-brand-accent-hover: #000000;
+  --color-brand-on-accent: #FFFFFF;
+  --color-brand-highlight: #F59E0B;
+
+  --font-display: "Inter", "system-ui", sans-serif;
+  --font-body: "Inter", "system-ui", sans-serif;
+}
+
+html {
+  background: var(--color-brand-bg);
+  color: var(--color-brand-fg);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+::selection {
+  background: var(--color-brand-accent);
+  color: var(--color-brand-on-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}

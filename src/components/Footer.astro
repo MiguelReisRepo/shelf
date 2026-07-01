@@ -1,0 +1,21 @@
+---
+import { tenant, CONTACT_EMAIL } from '@/config/site';
+const brand = tenant.brand.name;
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-brand-border mt-24">
+  <div class="mx-auto max-w-6xl px-5 py-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+    <div>
+      <div class="text-lg font-extrabold tracking-tight">{brand}</div>
+      <p class="text-sm text-brand-muted mt-1">Apps prontas a usar, com a tua marca.</p>
+    </div>
+    <div class="text-sm text-brand-muted">
+      <a href={`mailto:${CONTACT_EMAIL}`} class="hover:text-brand-fg transition-colors">{CONTACT_EMAIL}</a>
+    </div>
+  </div>
+  <div class="border-t border-brand-border">
+    <div class="mx-auto max-w-6xl px-5 py-5 text-xs text-brand-muted">
+      © {year} {brand}. Todos os direitos reservados.
+    </div>
+  </div>
+</footer>

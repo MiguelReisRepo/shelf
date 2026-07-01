@@ -1,0 +1,64 @@
+---
+import type { CatalogProduct } from '@/data/products';
+import { CONTACT_EMAIL, tenant } from '@/config/site';
+
+interface Props {
+  product: CatalogProduct;
+}
+const { product } = Astro.props;
+const currency = tenant.locale.currencySymbol;
+
+const mailtoHref = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+  `Quero a app "${product.name}" personalizada`,
+)}`;
+---
+<article class="flex flex-col rounded-2xl border border-brand-border bg-brand-bg overflow-hidden">
+  <div class="p-6 sm:p-8 flex flex-col gap-5 flex-1">
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-wider text-brand-muted">{product.kicker}</p>
+      <h3 class="mt-1 text-2xl font-extrabold tracking-tight">{product.name}</h3>
+      <p class="mt-1 text-sm font-medium text-brand-fg/80">{product.audience}</p>
+    </div>
+
+    <p class="text-sm leading-relaxed text-brand-muted">{product.description}</p>
+
+    <ul class="flex flex-col gap-2.5">
+      {product.features.map((f) => (
+        <li class="flex items-start gap-2.5 text-sm">
+          <svg class="mt-0.5 h-4 w-4 flex-none text-brand-accent" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.1 3.1 6.8-6.8a1 1 0 011.1-.3z" clip-rule="evenodd" />
+          </svg>
+          <span>{f}</span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-auto grid grid-cols-2 gap-3 pt-2">
+      <div class="rounded-xl border border-brand-border bg-brand-surface p-4">
+        <p class="text-xs font-semibold uppercase tracking-wider text-brand-muted">Template</p>
+        <p class="mt-1 text-xl font-extrabold">{currency}{product.pricing.template}</p>
+        <p class="mt-1 text-xs text-brand-muted">a app, pronta a arrancar</p>
+      </div>
+      <div class="rounded-xl border border-brand-accent bg-brand-accent text-brand-on-accent p-4">
+        <p class="text-xs font-semibold uppercase tracking-wider opacity-70">Feito-por-ti</p>
+        <p class="mt-1 text-xl font-extrabold">{currency}{product.pricing.done}</p>
+        <p class="mt-1 text-xs opacity-80">{product.pricing.doneIncludes}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-px bg-brand-border border-t border-brand-border">
+    <a
+      href={product.demoUrl}
+      class="bg-brand-bg text-center text-sm font-semibold py-4 hover:bg-brand-surface transition-colors"
+    >
+      Ver demo
+    </a>
+    <a
+      href={mailtoHref}
+      class="bg-brand-bg text-center text-sm font-semibold py-4 hover:bg-brand-surface transition-colors"
+    >
+      Quero personalizado
+    </a>
+  </div>
+</article>

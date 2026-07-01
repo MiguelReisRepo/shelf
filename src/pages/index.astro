@@ -1,0 +1,91 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import ProductCard from '@/components/ProductCard.astro';
+import { PRODUCTS } from '@/data/products';
+
+const steps = [
+  {
+    n: '1',
+    title: 'Testas',
+    body: 'Abres a demo e vês a app a funcionar a sério — não é uma imagem, é o produto.',
+  },
+  {
+    n: '2',
+    title: 'Compras',
+    body: 'Escolhes o template e recebe-lo pronto a arrancar, já com a tua marca.',
+  },
+  {
+    n: '3',
+    title: 'Personalizas (ou eu personalizo)',
+    body: 'Ajustas tu mesmo, ou escolhes o Feito-por-ti e trato eu de tudo por ti.',
+  },
+];
+---
+<BaseLayout
+  title="Shelf — apps prontas a usar, com a tua marca"
+  description="A prateleira de apps white-label para negócios em Portugal. Testa uma demo real, compra o template ou pede feito-por-ti. Apps de marcações e de loja online, prontas em dias."
+>
+  <Header />
+
+  <!-- Hero -->
+  <section class="mx-auto max-w-6xl px-5 pt-16 sm:pt-24 pb-12 text-center">
+    <p class="inline-block rounded-full border border-brand-border bg-brand-surface px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-muted">
+      A prateleira de apps white-label
+    </p>
+    <h1 class="mx-auto mt-6 max-w-3xl text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05]">
+      Apps prontas a usar, com a tua marca.
+    </h1>
+    <p class="mx-auto mt-6 max-w-2xl text-lg text-brand-muted leading-relaxed">
+      Escolhes uma app, testas a demo real e ficas com ela em dias — não em meses.
+      Compras o template ou pedes feito-por-ti. Simples, rápido e teu.
+    </p>
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+      <a
+        href="#produtos"
+        class="rounded-full bg-brand-accent text-brand-on-accent text-sm font-semibold px-6 py-3 hover:bg-brand-accent-hover transition-colors"
+      >
+        Ver as apps
+      </a>
+      <a
+        href="#como-funciona"
+        class="rounded-full border border-brand-border text-sm font-semibold px-6 py-3 hover:bg-brand-surface transition-colors"
+      >
+        Como funciona
+      </a>
+    </div>
+  </section>
+
+  <!-- Produtos -->
+  <section id="produtos" class="mx-auto max-w-6xl px-5 py-8 scroll-mt-20">
+    <div class="mb-8 sm:mb-10">
+      <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">As apps</h2>
+      <p class="mt-2 text-brand-muted">Duas apps testadas, prontas a vestir a tua marca.</p>
+    </div>
+    <div class="grid gap-6 lg:grid-cols-2">
+      {PRODUCTS.map((product) => <ProductCard product={product} />)}
+    </div>
+  </section>
+
+  <!-- Como funciona -->
+  <section id="como-funciona" class="mx-auto max-w-6xl px-5 py-16 scroll-mt-20">
+    <div class="mb-8 sm:mb-10">
+      <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Como funciona</h2>
+      <p class="mt-2 text-brand-muted">Três passos, sem surpresas.</p>
+    </div>
+    <div class="grid gap-6 sm:grid-cols-3">
+      {steps.map((s) => (
+        <div class="rounded-2xl border border-brand-border bg-brand-surface p-6">
+          <div class="flex h-9 w-9 items-center justify-center rounded-full bg-brand-accent text-brand-on-accent text-sm font-bold">
+            {s.n}
+          </div>
+          <h3 class="mt-4 text-lg font-bold">{s.title}</h3>
+          <p class="mt-2 text-sm text-brand-muted leading-relaxed">{s.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
