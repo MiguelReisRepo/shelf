@@ -50,9 +50,11 @@ const mailtoHref = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
   <div class="grid grid-cols-2 gap-px bg-brand-border border-t border-brand-border">
     <a
       href={product.demoUrl}
+      target="_blank"
+      rel="noopener"
       class="bg-brand-bg text-center text-sm font-semibold py-4 hover:bg-brand-surface transition-colors"
     >
-      Ver demo
+      Ver demo →
     </a>
     <a
       href={mailtoHref}

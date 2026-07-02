@@ -35,7 +35,8 @@ export const PRODUCTS: CatalogProduct[] = [
       done: 499,
       doneIncludes: 'inclui integração Google Calendar',
     },
-    demoUrl: '#',
+    // Local dev fallback; em produção define PUBLIC_DEMO_MARCACOES_URL para o demo deployado.
+    demoUrl: import.meta.env.PUBLIC_DEMO_MARCACOES_URL ?? 'http://localhost:3005/',
   },
   {
     id: 'loja',
@@ -55,6 +56,28 @@ export const PRODUCTS: CatalogProduct[] = [
       done: 349,
       doneIncludes: 'inclui setup + catálogo inicial',
     },
-    demoUrl: '#',
+    // Local dev fallback; em produção define PUBLIC_DEMO_LOJA_URL para o demo deployado.
+    demoUrl: import.meta.env.PUBLIC_DEMO_LOJA_URL ?? 'http://localhost:4332/pt',
+  },
+  {
+    id: 'site',
+    name: 'Site',
+    kicker: 'Site de uma página',
+    description:
+      'Um site rápido e bonito para o teu negócio numa única página — apresentação, serviços, testemunhos e contacto direto por WhatsApp. Pronto a pôr online em dias.',
+    audience: 'Para freelancers e micro-negócios.',
+    features: [
+      'Uma página com tudo o que precisas',
+      'Contacto direto por WhatsApp',
+      'Rápido e otimizado para Google (SEO)',
+      'Textos e cores fáceis de trocar',
+    ],
+    pricing: {
+      template: 49,
+      done: 149,
+      doneIncludes: 'inclui setup + textos iniciais',
+    },
+    // Local dev fallback; em produção define PUBLIC_DEMO_SITE_URL para o demo deployado.
+    demoUrl: import.meta.env.PUBLIC_DEMO_SITE_URL ?? 'http://localhost:4334/',
   },
 ];

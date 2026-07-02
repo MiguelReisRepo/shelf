@@ -1,6 +1,6 @@
-# build output
-dist/
-.astro/
+# build output (root only — keep vendored deps' dist/)
+/dist/
+/.astro/
 
 # dependencies
 node_modules/
